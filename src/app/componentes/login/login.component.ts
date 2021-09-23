@@ -16,11 +16,14 @@ export class LoginComponent implements OnInit {
   constructor(private Sauth:AuthService,private router:Router , private log:UserLogService) { }
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   public usuario:any;
+  public dato1='';
+  public dato2='';
   public user$: Observable<any>=this.Sauth.auth.user;
-  public email=new FormControl('',[Validators.required,Validators.pattern(this.emailPattern)]);
-  public password=new FormControl('',[Validators.required,Validators.minLength(6)]);
+  public email=new FormControl(this.dato1,[Validators.required,Validators.pattern(this.emailPattern)]);
+  public password=new FormControl(this.dato2,[Validators.required,Validators.minLength(6)]);
   loginForm=new FormGroup({email:this.email,password:this.password});
   ngOnInit(): void {
+    
   }
 
 async onLogin(){
@@ -47,7 +50,14 @@ async onLogin(){
   }
 
 }
-
+rellenar(){
+  this.dato1="testprobado@gmail.com"
+  this.dato2="vagovago";
+ this.email=new FormControl(this.dato1,[Validators.required,Validators.pattern(this.emailPattern)]);
+ this.password=new FormControl(this.dato2,[Validators.required,Validators.minLength(6)]);
+  this.loginForm=new FormGroup({email:this.email,password:this.password});
+  
+}
 mensajeError(texto:string){
   Swal.fire({
     icon: 'error',
