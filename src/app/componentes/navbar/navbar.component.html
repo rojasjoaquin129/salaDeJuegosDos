@@ -1,0 +1,50 @@
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand">SALA DE JUEGO</a>
+        <button  (click)="onSUB()" [ngClass]="flag" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded='susurro' aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div [ngClass]="flag2"  id="navbarTogglerDemo02">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item ">
+              <a class="nav-link" (click)="onSUB()"  style="color:white" routerLink='./home'>Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  (click)="onSUB()"  style="color:white"routerLink='./quien-soy'>Quen soy</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav mr-5 mt-0 mt-lg-0" *ngIf="user$ | async as user; else login" >
+            <li class="nav-item" >
+              <a class="nav-link" (click)="onSUB()"  style="color:white" *ngIf="user.displayName;else notName">{{user?.displayName}}</a>
+            </li>
+            <ng-template #notName>
+              <a class="nav-link">{{user?.email}}</a>
+             </ng-template>  
+            <li class="nav-item" *ngIf="user">
+              <a class="nav-link" type="button" style="color: white;" (click)="deslogear()">SingOut</a>
+            </li>
+          </ul>
+          <ng-template #login>
+            <ul class="navbar-nav mr-5 mt-0 mt-lg-0" >
+              <li class="nav-item" >
+                <a class="nav-link"  (click)="onSUB()" style="color:white" routerLink='./registro'>SingUp</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" (click)="onSUB()"style="color: white;" routerLink='./login'>SingIn</a>
+              </li>
+            </ul>
+          </ng-template>
+  
+         
+          
+        </div>
+      </nav>
+      
+      
+      
+      
+      
+      
+        
+  

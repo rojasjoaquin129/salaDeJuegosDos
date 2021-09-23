@@ -1,0 +1,68 @@
+<form class="form-signin" >
+    <div class="row" >
+      <div class="col-md-6 mx-auto mt-5" >
+        <div class="card">
+          <div class="card-body" >
+            <h1 class="text-center">INGRESAR</h1>
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()" #formulario='ngForm'errorTailor   novalidate>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="ingrese correo electronico" 
+                formControlName="email" [ngClass]="{'is-invalid':( email.invalid && email.touched) , 'is-valid':email.valid}"
+                [controlErrorsTpl]="emailError" required autofocus >
+              </div>
+              <div class="form-group" >
+                <label for="Password" >Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="ingrese contraseña"  
+                formControlName="password"  [controlErrorsTpl]="passwordError" 
+                [ngClass]="{'is-invalid':( password.invalid && password.touched) , 'is-valid':password.valid}" required autofocus>
+              </div>
+              <div class="d-grid gap-2">
+                <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!formulario.form.valid">Sign in</button>
+              </div>
+            </form>
+            
+            <div class="form-control">
+              <p>No tienes una cuenta?<a routerLink='../registro'>Registrarse</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</form>
+
+<ng-template let-error let-text="text" #passwordError>
+  <div *ngIf="error?.minlength">
+    <b style="color: red;">Error:</b>
+    <i style="color: red;">No cumple con la cantidad de caracteres minimo</i>
+</div>
+<div *ngIf="error?.required">
+  <b style="color: red;">Error:</b>
+  <i style="color: red;">campo vacio , este campo es requerido</i>
+</div>
+</ng-template>
+
+
+
+<ng-template let-error let-text="text" #emailError>
+<div *ngIf="email.hasError('pattern')" >
+  <b  style="color: red;">ERROR :{{error|json}}</b>
+  <i style="color: red;">No es valido ese email</i>
+</div>
+<div *ngIf=" email.hasError('required')" >
+  <b style="color: red;">ERROR :</b>
+  <i style="color: red;" >campo vacio , este campo es requerido</i>
+</div>
+</ng-template>
+<!--
+<div>
+    <h1>Login</h1>
+    <input placeholder="Usuario" #user type="text">
+    <input placeholder="Contraseña" #password type="password">
+    <button (click)="onLogin(user.value,password.value)">Entrar</button>
+    
+</div>
+-->
+
+
+

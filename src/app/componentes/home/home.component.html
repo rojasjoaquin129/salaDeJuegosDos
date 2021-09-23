@@ -1,0 +1,99 @@
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light" style=" z-index:1;background-image:url(../../../assets/imagenes/fondocolores1.jpg); background-size:cover; background-repeat: no-repeat;" >
+    <div class="product-device shadow-sm d-none d-md-block" style="background-image:url(../../../assets/imagenes/celu.png); background-size:cover; background-repeat: no-repeat;"></div>
+    <div class="product-device product-device-2 shadow-sm d-none d-md-block" style= " z-index:2;background-image:url(../../../assets/imagenes/tapa2.png); background-size:cover; background-repeat: no-repeat; "></div>
+    <div class="col-md-5 p-lg-5 mx-auto my-5">
+      <h1 class="display-4 font-weight-normal" style="color:white">JUEGOS</h1>
+      <div *ngIf="user$ | async as user; else logeado">
+        <a class="btn btn-outline-success" (click)="abrirChat()">imiciar Chat</a>
+      </div>
+     <ng-template #logeado>
+      <p class="lead font-weight-normal"  style="color:white">buenas contamos con unos juegos simples echos con amor y desesperacion , para ver el chat tiene que iniciar sesion  </p>
+        <a class="btn btn-outline-warning" routerLink='../login'>iniciar sesion </a>
+     </ng-template>
+    </div>
+    
+    <div  style="z-index:3;"class="chat-window" *ngIf="actionChat" >
+    <app-chat ></app-chat>
+</div>
+  </div>
+  
+  <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+    <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+      <div class="my-3 py-3">
+        <h2 class="display-5">Mayor o Menor?</h2>
+        <p class="lead">Adivina la proxima carta.</p>
+      </div>
+      <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;
+      background-image: url(../../../assets/imagenes/mayoromenor.jpg);background-size:cover; background-repeat: no-repeat;"></div>
+    </div>
+    <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 p-3">
+        <h2 class="display-5"> EL Ahorcado</h2>
+        <p class="lead">Descubre la palabra que se encuentra escondida.</p>
+      </div>
+      <div type="button"  class="bg-dark shadow-sm mx-auto" 
+      style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;
+       background-image: url(../../../assets/imagenes/walpaperahorcado.jpg);background-size:cover; background-repeat: no-repeat; "></div>
+    </div>
+  </div>
+  
+  <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+    <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 p-3">
+        <h2 class="display-5">Puzzle Numerico</h2>
+        <p class="lead">Juego Simple donde tenes que acomodar los numeros </p>
+      </div>
+      <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;
+      background-image: url(../../../assets/imagenes/puzzles.jpg);background-size:cover; background-repeat: no-repeat;"></div>
+    </div>
+    <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+      <div class="my-3 py-3">
+        <h2 class="display-5">Preguntados Pokemon</h2>
+        <p class="lead">Juego de preguntas sobre pokemones</p>
+      </div>
+      <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;
+      background-image: url(../../../assets/imagenes/final.jpg);background-size:cover; background-repeat: no-repeat;"></div>
+    </div>
+  </div>
+  
+  <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+    <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 p-3">
+        <h2 class="display-5">Another headline</h2>
+        <p class="lead">And an even wittier subheading.</p>
+      </div>
+      <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+    </div>
+    <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 py-3">
+        <h2 class="display-5">Another headline</h2>
+        <p class="lead">And an even wittier subheading.</p>
+      </div>
+      <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+    </div>
+  </div>
+  
+  <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+    <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 p-3">
+        <h2 class="display-5">Another headline</h2>
+        <p class="lead">And an even wittier subheading.</p>
+      </div>
+      <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+    </div>
+    <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 py-3">
+        <h2 class="display-5">Another headline</h2>
+        <p class="lead">And an even wittier subheading.</p>
+      </div>
+      <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+    </div>
+  </div>
+  
+ 
+  
+  
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+  
+        
