@@ -47,6 +47,41 @@
   left: 48.5%;
   position: relative;
 }
+.flip3d > .front {
+  position: absolute;
+  background-image: url("../../../assets/imagenes/menor-mayor/ctapa.jpg");
+  background-size: cover;
+  background-position: center center;
+  width: 121px;
+  height: 191px;
+  top: 9.5%;
+  left: 48.5%;
+  border-radius: 7px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: -webkit-transform 0.5s linear 0s;
+  transition: transform 0.5s linear 0s;
+  -webkit-transform: perspective(600px) rotateY(180deg);
+  transform: perspective(600px) rotateY(0deg);
+}
+
+.flip3d > .back {
+  position: absolute;
+  -webkit-transform: perspective(600px) rotateY(180deg);
+  transform: perspective(600px) rotateY(180deg);
+  background-image: url("../../../assets/imagenes/menor-mayor/contratapa.jpg");
+  background-size: cover;
+  background-position: center center;
+  width: 122px;
+  height: 191px;
+  top: 9.5%;
+  left: 48.5%;
+  border-radius: 7px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: -webkit-transform 0.5s linear 0s;
+  transition: transform 0.5s linear 0s;
+}
 .girarFront {
   position: absolute;
   -webkit-transform: perspective(600px) rotateY(180deg);
@@ -96,7 +131,33 @@
   justify-content: center;
   font-size: 5em;
 }
+@keyframes miAnimacion {
+  0% {
+    top: -0.5%;
+    left: 52%;
+  }
 
+  100% {
+    background: blue;
+    left: -182%;
+  }
+}
+
+.moverCarta {
+  position: relative;
+  background-image: url("../../../assets/imagenes/menor-mayor/contratapa.jpg");
+  background-size: cover;
+  background-position: center center;
+  width: 125px;
+  height: 193px;
+  top: -0.5%;
+  left: 52%;
+  border-radius: 7px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  animation: miAnimacion;
+  animation-duration: 3s;
+}
 .cartaEstatica {
   position: absolute;
   width: 125px;
@@ -154,10 +215,32 @@
     opacity: 1;
   }
 }
+#contenedor-mensaje-victoria,
+#contenedor-mensaje-derrota {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000000ad;
+}
+
+#mensaje-victoria,
+#mensaje-derrota {
+  min-height: 400px;
+  background: white;
+  top: 20%;
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+}
 
 .ocultar-mensaje {
   display: none;
 }
+
 .btn {
   width: 120px;
   height: 30px;
