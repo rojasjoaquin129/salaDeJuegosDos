@@ -1,0 +1,21 @@
+@import "~bootswatch/dist/Materia/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/Materia/bootswatch";
+
+#palabraAdivar {
+  text-align: center;
+  letter-spacing: 10px;
+  font-size: 30px;
+}
+#botonera {
+  text-align: center;
+}
+.nose {
+  height: auto;
+  max-width: 350px;
+}
+
+#contenedor {
+  display: flex;
+  justify-content: center;
+}

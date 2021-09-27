@@ -53,8 +53,8 @@ async onLogin(){
 rellenar(){
   this.dato1="testprobado@gmail.com"
   this.dato2="vagovago";
- this.email=new FormControl(this.dato1,[Validators.required,Validators.pattern(this.emailPattern)]);
- this.password=new FormControl(this.dato2,[Validators.required,Validators.minLength(6)]);
+  this.email=new FormControl(this.dato1,[Validators.required,Validators.pattern(this.emailPattern)]);
+  this.password=new FormControl(this.dato2,[Validators.required,Validators.minLength(6)]);
   this.loginForm=new FormGroup({email:this.email,password:this.password});
   
 }

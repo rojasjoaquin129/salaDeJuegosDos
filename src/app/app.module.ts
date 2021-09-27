@@ -15,7 +15,8 @@ import { environment } from 'src/environments/environment';
 import { ErrorTailorModule } from '@ngneat/error-tailor';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
     LoginComponent,
     NavbarComponent,
     QuienSoyComponent,
-    RegistroComponent
+    RegistroComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     ErrorTailorModule.forRoot({
       errors: {
         useValue: {

@@ -12,8 +12,10 @@ const routes: Routes = [
   {path:'quien-soy',component:QuienSoyComponent},
   {path:'registro',component: RegistroComponent},
   {path:'chat',component:ChatComponent},
+  {path:'list-gamer',loadChildren:()=> import('./list-gamers/list-gamers.module').then( m=>m.ListGamersModule)},
   {path:"" ,redirectTo: 'home',pathMatch:'full'},
-  {path:'**',component: HomeComponent}
+ 
+  {path:'**',component: HomeComponent},
 ];
 
 
