@@ -21,7 +21,7 @@
   float: left;
   width: 100%;
   left: 28%;
-  top: 2%;
+  top: 15%;
   position: absolute;
 }
 .contenedor-vidas span {
@@ -49,12 +49,12 @@
 }
 .flip3d > .front {
   position: absolute;
-  background-image: url("../../../assets/imagenes/menor-mayor/ctapa.jpg");
+  background-image: url("../../../assets/imagenes/menor-mayor/tapa.jpg");
   background-size: cover;
   background-position: center center;
   width: 121px;
   height: 191px;
-  top: 9.5%;
+  top: 3%;
   left: 48.5%;
   border-radius: 7px;
   -webkit-backface-visibility: hidden;
@@ -74,7 +74,7 @@
   background-position: center center;
   width: 122px;
   height: 191px;
-  top: 9.5%;
+  top: 3%;
   left: 48.5%;
   border-radius: 7px;
   -webkit-backface-visibility: hidden;
@@ -92,7 +92,7 @@
   background-position: center center;
   width: 122px;
   height: 191px;
-  top: 9.5%;
+  top: 3%;
   left: 48.5%;
   border-radius: 7px;
   -webkit-backface-visibility: hidden;
@@ -112,7 +112,7 @@
   background-position: center center;
   width: 121px;
   height: 191px;
-  top: 9.5%;
+  top: 3%;
   left: 54%;
   border-radius: 7px;
   -webkit-backface-visibility: hidden;
@@ -162,7 +162,7 @@
   position: absolute;
   width: 125px;
   height: 193px;
-  top: 9%;
+  top: 3%;
   left: -181%;
   background-image: url("../../../assets/imagenes/menor-mayor/contratapa.jpg");
   background-size: cover;
@@ -195,13 +195,13 @@
   background-position: center center;
   width: 125px;
   height: 193px;
-  top: 9%;
+  top: 3%;
   left: -181%;
   border-radius: 7px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   animation: aparecer;
-  animation-duration: 3s;
+  animation-duration: 1s;
 }
 
 @keyframes aparecer {

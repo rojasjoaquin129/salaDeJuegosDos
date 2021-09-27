@@ -161,15 +161,10 @@ menor(){
 }
 
 ganaste(){
- this.toastr.success('Adivinaste!!','CARTA',{positionClass:'toast-bootm-right' });
+ this.toastr.success('Adivinaste!!','CARTA',{positionClass:'toast-bottom-right' });
 }
 perdiste(){
-  Swal.fire({
-    position: 'top-end',
-    icon: 'error',
-    showConfirmButton: false,
-    timer: 1000
-  }) 
+this.toastr.error('Uhh le erraste y perdiste una vida' ,'CARTA');
 }
 mensajevictoria(){
   let texto="aca";

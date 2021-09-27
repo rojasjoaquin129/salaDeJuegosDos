@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-juego-ahorcado',
   templateUrl: './juego-ahorcado.component.html',
@@ -56,14 +56,14 @@ export class JuegoAhorcadoComponent  {
       if(this.numFallas<=5){
         this.aumentaFallos(boton.letra);
       }else{
-        alert('perder');
+        this.mensajePerdiste();
         console.log(this.palabraAleatoria);
         this.inicializarJuego();
       }  
     }else{
       boton.estado = "btn btn-success";
       if(this.palabraAdivinada===this.palabraAleatoria){
-        alert('ganaste');
+       this.mensajevictoria();
       }
     }
   }
@@ -86,7 +86,39 @@ export class JuegoAhorcadoComponent  {
     this.numFallas++;
   }
 
- 
+  mensajevictoria(){
+    let texto="aca";
+    Swal.fire({
+      //icon: 'success',
+      title: 'Felicidades!!! ganaste!!',
+      text:texto,
+      imageUrl: ("../../../assets/imagenes/menor-mayor/victoria.gif"),
+      imageHeight: 300, 
+      confirmButtonText: 'jugar otra partida?',
+      showDenyButton: true,
+      denyButtonText: 'volver al menu ?',
+    }).then((result) => {if (result.isConfirmed){
+      this.inicializarJuego();
+    }})
+  }
+  mensajePerdiste(){
+    let texto="Poprquie no sale lo q quiero";
+    Swal.fire({
+      //icon: 'success',
+      title: 'Lo sentimos!!!',
+     
+       text: 'Ha perdido esta vez, pero lo hizo excelente',
+      imageUrl: ("../../../assets/imagenes/menor-mayor/derrota.gif"),
+      imageHeight: 150, 
+      imageAlt: 'A tall image',
+      confirmButtonText: 'jugar otra partida?',
+      showDenyButton: true,
+      denyButtonText: 'volver al menu ?',
+    }).then((result) => {if (result.isConfirmed){
+      this.inicializarJuego();
+    }})
+  }
+  
 }
 
 
