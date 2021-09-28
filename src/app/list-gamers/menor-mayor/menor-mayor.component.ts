@@ -1,6 +1,7 @@
 import { Component,  } from '@angular/core';
 import Swal from 'sweetalert2';
 import { ToastrService} from 'ngx-toastr';
+
 @Component({
   selector: 'app-menor-mayor',
   templateUrl: './menor-mayor.component.html',
@@ -161,10 +162,10 @@ menor(){
 }
 
 ganaste(){
- this.toastr.success('Adivinaste!!','CARTA',{positionClass:'toast-bottom-right' });
+ this.toastr.success('Adivinaste!!','CARTA',{positionClass:'right',timeOut:500  });
 }
 perdiste(){
-this.toastr.error('Uhh le erraste y perdiste una vida' ,'CARTA');
+this.toastr.error('Uhh le erraste y perdiste una vida' ,'CARTA' ,{positionClass:'right',timeOut:500 });
 }
 mensajevictoria(){
   let texto="aca";
@@ -173,7 +174,7 @@ mensajevictoria(){
     title: 'Felicidades!!! ganaste!!',
     text:texto,
     imageUrl: ("../../../assets/imagenes/menor-mayor/victoria.gif"),
-    imageHeight: 300, 
+    imageHeight: 300,
     confirmButtonText: 'jugar otra partida?',
     showDenyButton: true,
     denyButtonText: 'volver al menu ?',
@@ -189,7 +190,7 @@ mensajePerdiste(){
    
      text: 'Ha perdido esta vez, pero lo hizo excelente con '+this.adivinadas+' cartas adivinadas de 20',
     imageUrl: ("../../../assets/imagenes/menor-mayor/derrota.gif"),
-    imageHeight: 150, 
+    imageHeight: 100, 
     imageAlt: 'A tall image',
     confirmButtonText: 'jugar otra partida?',
     showDenyButton: true,
