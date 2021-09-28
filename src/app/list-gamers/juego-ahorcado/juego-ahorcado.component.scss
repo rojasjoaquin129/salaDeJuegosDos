@@ -2,6 +2,19 @@
   text-align: center;
   letter-spacing: 10px;
   font-size: 30px;
+  @media screen and (min-width: 450px) {
+    font-size: 60px;
+  }
+}
+
+.susu {
+  @media screen and (min-width: 450px) {
+    position: relative;
+    width: 500px;
+    height: 250px;
+    left: 418px;
+    top: -288px;
+  }
 }
 #botonera {
   text-align: center;
@@ -9,9 +22,14 @@
 .nose {
   height: auto;
   max-width: 350px;
+  @media screen and (min-width: 450px) {
+    width: 50%;
+    max-width: 600px;
+  }
 }
 
 #contenedor {
   display: flex;
   justify-content: center;
+  margin: 0 auto;
 }
