@@ -1,1 +1,27 @@
-<p>puzzle-numerico works!</p>
+
+
+<div>
+    <div class="text-center">
+        <h1 >Puzzle</h1>
+        <h4>es un juego muy dificil ya q esta totalmente en alatorio , podes estar todo el dia </h4>
+        <h4>movimientos realizados : {{movimientos}}</h4>
+    </div>
+
+    <div class="section">
+    <div
+      *ngFor="let caja of cajas"
+      [ngClass]="caja.estado"
+      (click)="tocoCaja(caja)"
+    >
+      {{ caja.numero }}
+    </div>
+  </div>
+  <p class="text-center">consejo: empeza ordenando la primera y la ultima fila es mas rapido</p>
+  <div class="botones">
+      <button class="btn btn-success mr-4" routerLink='../../home'>Ir al Menu</button>
+      <button class="btn btn-info ml-4" (click)="inicializarjuego()">reiniciar?</button>
+  </div>
+
+</div>
+
+
