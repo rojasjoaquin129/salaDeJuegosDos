@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-juego-ahorcado',
@@ -15,7 +16,7 @@ export class JuegoAhorcadoComponent  {
   fallas:Array<string>=[];
   numFallas=0;
   title = 'juegoAhorcado';
-  constructor(){
+  constructor( private router:Router){
     this.inicializarJuego();
   }
   aleatorio(minimo:number,maximo:number){
@@ -34,7 +35,7 @@ export class JuegoAhorcadoComponent  {
   }
 
   inicializarBotones(): void {
-    
+
     for (let i = 0; i < this.LETRAS.length; i++) {
         this.botones.push({ letra: this.LETRAS[i], estado: "btn btn-primary" });
     }
@@ -46,7 +47,7 @@ export class JuegoAhorcadoComponent  {
     }else{
       for (let i = 0; i < this.palabraAleatoria.length; i++) {
         this.palabraAdivinada+='-';
-        
+
       }
     }
   }
@@ -59,7 +60,7 @@ export class JuegoAhorcadoComponent  {
         this.mensajePerdiste();
         console.log(this.palabraAleatoria);
         this.inicializarJuego();
-      }  
+      }
     }else{
       boton.estado = "btn btn-success";
       if(this.palabraAdivinada===this.palabraAleatoria){
@@ -76,7 +77,7 @@ export class JuegoAhorcadoComponent  {
           letra+this.palabraAdivinada.substr(i+1);
           letraAcertada=true;
       }
-     
+
     }
     return letraAcertada;
 
@@ -91,34 +92,48 @@ export class JuegoAhorcadoComponent  {
     Swal.fire({
       //icon: 'success',
       title: 'Felicidades!!! ganaste!!',
-      text:texto,
+      text:'ganaste perro !! con una cantidad de ' +this.numFallas,
       imageUrl: ("../../../assets/imagenes/menor-mayor/victoria.gif"),
-      imageHeight: 300, 
+      imageHeight: 300,
       confirmButtonText: 'jugar otra partida?',
       showDenyButton: true,
       denyButtonText: 'volver al menu ?',
+      padding: '3em',
+     background: '#fff url(https://sweetalert2.github.io/images/trees.png)',
+     backdrop: `
+       rgba(0,0,123,0.4)
+       url("https://sweetalert2.github.io/images/nyan-cat.gif")
+       left top
+       no-repeat
+     `
     }).then((result) => {if (result.isConfirmed){
       this.inicializarJuego();
-    }})
+    }else if(result.isDenied){
+      this.router.navigate(['./home']);
+    }
+  })
   }
   mensajePerdiste(){
     let texto="Poprquie no sale lo q quiero";
     Swal.fire({
       //icon: 'success',
       title: 'Lo sentimos!!!',
-     
+
        text: 'Ha perdido esta vez, pero lo hizo excelente',
       imageUrl: ("../../../assets/imagenes/menor-mayor/derrota.gif"),
-      imageHeight: 150, 
+      imageHeight: 150,
       imageAlt: 'A tall image',
       confirmButtonText: 'jugar otra partida?',
       showDenyButton: true,
       denyButtonText: 'volver al menu ?',
     }).then((result) => {if (result.isConfirmed){
       this.inicializarJuego();
-    }})
+    }else if(result.isDenied){
+      this.router.navigate(['./home']);
+    }
+  })
   }
-  
+
 }
 
 

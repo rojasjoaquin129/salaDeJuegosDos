@@ -7,14 +7,22 @@
   border-style: dashed;
   display: flex;
   flex-wrap: wrap;
+  border-radius: 5px;
   justify-content: space-between;
   @media screen and (min-width: 400px) {
-    width: 25%;
+    width: 30%;
+  }
+}
+
+.todo {
+  background-image: url("../../../assets/imagenes/fondoPuzzle.jpg");
+  @media screen and (min-width: 400px) {
+    background-image: url("../../../assets/imagenes/fondoPuzlle.png");
   }
 }
 
 .cajas {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   width: calc((100% - 4px) / 4);
   flex: none;
   margin-bottom: 1px;
@@ -24,6 +32,8 @@
   padding: 2em 0;
   border-color: black;
   border-style: solid;
+  border-radius: 7px;
+
   @media screen and (min-width: 400px) {
     padding: 42px;
     width: calc((100% - 10px) / 4);
@@ -32,6 +42,7 @@
     flex: none;
     align-items: center;
     height: 44px;
+    font-size: 20px;
   }
 }
 .cajas2 {
@@ -44,6 +55,7 @@
   align-items: center;
   border-color: rgb(10, 10, 10);
   border-style: solid;
+  border-radius: 7px;
   @media screen and (min-width: 400px) {
     padding: 42px;
     width: calc((100% - 10px) / 4);

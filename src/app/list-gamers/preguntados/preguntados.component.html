@@ -1,4 +1,19 @@
 <div class="todo">
+  <div class="padre">
+    <div class="datos">
+      <div class="contenedor-vidas">
+        <span >Vidas:</span>
+        <img src="../../../assets/imagenes/pngwing.com.png" *ngIf="vidas[0]">
+        <img src="../../../assets/imagenes/pngwing.com.png" *ngIf="vidas[1]">
+        <img src="../../../assets/imagenes/pngwing.com.png" *ngIf="vidas[2]">
+    </div>
+    <div class="contenedor-hora" id="contenedor">
+      <span> Restan  : {{cantidad}} </span>
+      <span>  |Correctas: {{adivinadas}} de 20</span>
+      </div>
+    </div>
+  </div>
+
   <div class="contenedor" *ngIf="!cambiarJuego">
     <div class="cont-titulo">
       <div class="titulo">

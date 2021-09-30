@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-puzzle-numerico',
   templateUrl: './puzzle-numerico.component.html',
@@ -11,7 +12,7 @@ export class PuzzleNumericoComponent implements OnInit {
    numerosGenerados:any
   pocicionDelHueco=0;
   movimientos=0;
-  constructor() { 
+  constructor(private router:Router) {
   this.inicializarjuego();
   }
 
@@ -20,12 +21,13 @@ export class PuzzleNumericoComponent implements OnInit {
   inicializarjuego(){
     this.cajas=[];
     this.iniciarnumeros();
-    
+    this.movimientos=0;
+
   }
   iniciarnumeros(){
     this.numerosGenerados=this.ordenar()
     for (let i = 0; i <this.numerosGenerados.length; i++) {
-      
+
       if(this.numerosGenerados[i]==='16'){
         console.log(this.numerosGenerados[i]);
         this.pocicionDelHueco=i;
@@ -33,7 +35,7 @@ export class PuzzleNumericoComponent implements OnInit {
       }else{
         this.cajas.push({ numero: this.numerosGenerados[i], estado: "cajas" });
       }
-      
+
   }
   }
 
@@ -51,7 +53,7 @@ export class PuzzleNumericoComponent implements OnInit {
     flag=true;
   }
 
-    
+
     return flag;
   }
 
@@ -62,7 +64,7 @@ export class PuzzleNumericoComponent implements OnInit {
       if(numero==this.cajas[i].numero){
         pocision=i;
       }
-      
+
     }
     return pocision;
   }
@@ -104,7 +106,7 @@ export class PuzzleNumericoComponent implements OnInit {
     let pocicionTocado=this.buscarPocicionActual(caja.numero);
     console.log(this.pocicionDelHueco);
     console.log(pocicionTocado);
-    
+
     let veri=this.verifiacion(this.pocicionDelHueco,pocicionTocado);
     console.log(veri);
     if(veri){
@@ -112,17 +114,41 @@ export class PuzzleNumericoComponent implements OnInit {
     intercambio=this.cajas[pocicionTocado];
     this.cajas[pocicionTocado]=this.cajas[this.pocicionDelHueco];
     this.cajas[this.pocicionDelHueco]=intercambio;
-   
+
     this.pocicionDelHueco=pocicionTocado;
     console.log(pocicionTocado);
     console.log(this.pocicionDelHueco);
     this.movimientos++;
     }
     if(this.verificarTabla()){
-      alert('ganaste movimientos realizados '+this.movimientos);
+      this.mensajevictoria('ganaste movimientos realizados '+this.movimientos);
     }
 
 
 }
-
+mensajevictoria(texto:string){
+  Swal.fire({
+    //icon: 'success',
+    title: 'Felicidades!!! ganaste!!',
+    text:texto,
+    imageUrl: ("../../../assets/imagenes/menor-mayor/victoria.gif"),
+    imageHeight: 300,
+    confirmButtonText: 'jugar otra partida?',
+    showDenyButton: true,
+    denyButtonText: 'volver al menu ?',
+    padding: '3em',
+     background: '#fff url(https://sweetalert2.github.io/images/trees.png)',
+     backdrop: `
+       rgba(0,0,123,0.4)
+       url("https://sweetalert2.github.io/images/nyan-cat.gif")
+       left top
+       no-repeat
+     `
+  }).then((result) => {if (result.isConfirmed){
+    this.inicializarjuego();
+  }else if(result.isDenied){
+    this.router.navigate(['./home']);
+  }
+})
+}
 }

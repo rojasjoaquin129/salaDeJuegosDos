@@ -1,6 +1,7 @@
 import { Component,  } from '@angular/core';
 import Swal from 'sweetalert2';
 import { ToastrService} from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menor-mayor',
@@ -24,11 +25,14 @@ export class MenorMayorComponent  {
   texto='Espectacular Terminaste con las 3 vidas intactas ,sos un crack!';
   adivinadas=0;
   cantidad=10;
-  constructor(private toastr: ToastrService){
+  constructor(private toastr: ToastrService ,private router: Router){
     this.inicialiarJuego();
 
   }
-  
+  reproducir() {
+    const audio = new Audio('../../../assets/sonidos/carta.mp3');
+    audio.play();
+}
   inicialiarJuego(){
     this.corazones=3;
     this.numeroCartaAnterior='';
@@ -41,7 +45,7 @@ export class MenorMayorComponent  {
     this.adivinadas=0;
     this.descontarCorazones();
   }
-  
+
 
   generadorcarta() :string{
     let singleCard=this.cards[Math.floor(Math.random()*4)];
@@ -49,7 +53,7 @@ export class MenorMayorComponent  {
     this.numeroAComparar=this.singleNumero+''+singleCard;
     return this.singleNumero;
   }
-  
+
   buscadorDeItem(carta:string):number{
     let numero=0;
     for (let i = 0; i < this.numbers.length; i++) {
@@ -58,20 +62,21 @@ export class MenorMayorComponent  {
         console.log(this.numbers[i]);
         numero=i+1;
       }
-      
+
     }
     return numero;
   }
 
   descontarCorazones(){
     if(this.corazones===3){
-      
+
       this.vidas[0]=true;
       this.vidas[1]=true;
       this.vidas[2]=true;
+
     }else {
       if(this.corazones===2)
-      {  
+      {
        this.texto="Genial te felicito terminaste con 2 vidas a que no terminas sin usar ninguna , te reto!!!"
         this.vidas[0]=false;
       }else{
@@ -80,19 +85,19 @@ export class MenorMayorComponent  {
           this.vidas[1]=false;
         }else{
           this.vidas[2]=false;
-          
+
         }
-        
+
       }
     }
-    
+
   }
 
   perderVidas(){
     this.corazones--;
     this.descontarCorazones();
     if(this.corazones===0){
-      this.mensajePerdiste(); 
+      this.mensajePerdiste();
       this.disableBtn=false;
     }
   }
@@ -116,17 +121,17 @@ export class MenorMayorComponent  {
         //descuento de corazones
 
      }
-     
+
     }
-    
+
     this.cantidad--;
     setTimeout(()=>{this.disableBtn=true ,5000});
     setTimeout(()=>{this.aparece=true ,1000});
     setTimeout(()=>{this.flag=false ,1000});
     this.numeroCartaAnterior=this.numeroAComparar;
   }
- 
- 
+
+
  DarVueltaCarta(){
    this.flag=true;
    this.aparece=false;
@@ -141,24 +146,24 @@ export class MenorMayorComponent  {
     setTimeout(()=>{this.compararCarta(numeroAnterior,CartaSiguente,flagMayorOMenor)},1500);
     setTimeout(()=>{this.cartaEstaticae()},80000);
     if(this.cantidad===0 && this.corazones!=0){
-      this.mensajevictoria();
+      this.mensajevictoria(this.texto);
     }
    }else{
   this.disableBtn=false;
    }
-  
+
  }
 cartaEstaticae(){
   this.cartaEstatica=true;
- 
+
 }
 mayor(){
   this.ProcesoDelJuego(true);
+  this.reproducir();
 }
 menor(){
   this.ProcesoDelJuego(false);
-
-
+  this.reproducir();
 }
 
 ganaste(){
@@ -167,37 +172,54 @@ ganaste(){
 perdiste(){
 this.toastr.error('Uhh le erraste y perdiste una vida' ,'CARTA' ,{positionClass:'right',timeOut:500 });
 }
-mensajevictoria(){
-  let texto="aca";
+mensajevictoria(text:string){
+
   Swal.fire({
     //icon: 'success',
     title: 'Felicidades!!! ganaste!!',
-    text:texto,
+    text:text,
+
     imageUrl: ("../../../assets/imagenes/menor-mayor/victoria.gif"),
     imageHeight: 300,
     confirmButtonText: 'jugar otra partida?',
     showDenyButton: true,
     denyButtonText: 'volver al menu ?',
+    padding: '3em',
+    background: '#fff url(https://sweetalert2.github.io/images/trees.png)',
+    backdrop: `
+      rgba(0,0,123,0.4)
+      url("https://sweetalert2.github.io/images/nyan-cat.gif")
+      left top
+      no-repeat
+    `
+
   }).then((result) => {if (result.isConfirmed){
     this.inicialiarJuego();
-  }})
+  } else if(result.isDenied){
+    this.router.navigate(['./home']);
+  }
+})
 }
 mensajePerdiste(){
   let texto="Poprquie no sale lo q quiero";
   Swal.fire({
     //icon: 'success',
     title: 'Lo sentimos!!!',
-   
+
      text: 'Ha perdido esta vez, pero lo hizo excelente con '+this.adivinadas+' cartas adivinadas de 20',
     imageUrl: ("../../../assets/imagenes/menor-mayor/derrota.gif"),
-    imageHeight: 100, 
+    imageHeight: 100,
     imageAlt: 'A tall image',
     confirmButtonText: 'jugar otra partida?',
     showDenyButton: true,
     denyButtonText: 'volver al menu ?',
+
   }).then((result) => {if (result.isConfirmed){
     this.inicialiarJuego();
-  }})
+  }else if(result.isDenied){
+    this.router.navigate(['./home']);
+  }
+})
 }
 
 

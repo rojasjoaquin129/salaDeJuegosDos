@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConsumirApiService } from 'src/app/services/consumir-api.service';
 import Swal from 'sweetalert2';
 import { ToastrService} from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-preguntados',
@@ -9,7 +10,7 @@ import { ToastrService} from 'ngx-toastr';
   styleUrls: ['./preguntados.component.scss']
 })
 export class PreguntadosComponent implements OnInit {
-
+  corazones=3;
   hechizos:any
   personajes:any;
   //juego de avidinar el nombre de la imagen
@@ -32,14 +33,14 @@ export class PreguntadosComponent implements OnInit {
   UsosArray:any
   UsoVerdadero:any
   nombreHechizo:any
-
-
-  constructor(private service : ConsumirApiService ,private toastr: ToastrService) {
+  readonly vidas=[true,true,true];
+  cantidad=20;
+  adivinadas=0;
+  texto='Espectacular Terminaste con las 3 vidas intactas ,sos un crack!';
+  constructor(private service : ConsumirApiService ,private toastr: ToastrService ,private router:Router) {
     this.service.obtenerpersonaje().subscribe((personaje:any)=>{
       this.personajes=personaje;
      this.generarRespuestasImagen();
-      console.log(this.RespuestaVerdadera);
-
     },error=>{console.log('error',error)});
     this.service.obtenerHechizos().subscribe((hechizos:any)=>{
       this.hechizos=hechizos;
@@ -47,18 +48,33 @@ export class PreguntadosComponent implements OnInit {
 
   }
 
-  inicialiarJuego(){
+  reset(){
     this.cambiarJuego=false;
     this.ActivarHechizo=false;
     this.cambiarHechizo=false;
+    this.personajes=[];
+    this.hechizos=[]
+  }
+  inicialiarJuego(){
+    this.cantidad=20;
+    this.adivinadas=0;
+    this.cantidadFotos=5;
+    this.corazones=3;
+    this.descontarCorazones();
+    this.cambiarJuego=false;
+    this.ActivarHechizo=false;
+    this.cambiarHechizo=false;
+    this.generarRespuestasImagen();
   }
   compararhechizos(hechizo:any){
       if(hechizo===this.hechizoVerdadero){
        this.ganaste();
-
+        this.adivinadas++;
       }else{
        this.perdiste();
+       this.perderVidas();
       }
+      this.cantidad--;
       this.cantidadFotos--;
       if(this.cantidadFotos!=0){
         this.generarhechizosPreguntas ();
@@ -72,28 +88,35 @@ export class PreguntadosComponent implements OnInit {
     compararUso(uso:any){
       if(uso===this.UsoVerdadero){
         this.ganaste();
-
+        this.adivinadas++;
       }else{
        this.perdiste();
+       this.perderVidas();
       }
+      this.cantidad--;
+      this.cantidadFotos--;
       if(this.cantidadFotos!=0){
         this.generarUsosPreguntas();
-      }else{
-      alert("fin del juego");
-
+      }else
+      if(this.cantidad===0){
+        this.mensajevictoria(this.texto)
+        this.reset();
       }
 
+
+
+
     }
-
-
 
   compararImagen(imagenComparar:any){
     if(imagenComparar==this.imagenVerdadera){
       this.ganaste();
-
+      this.adivinadas++;
     }else{
      this.perdiste();
+     this.perderVidas();
     }
+    this.cantidad--;
     this.cantidadFotos--;
     if(this.cantidadFotos!=0){
       this.generarImagenesPregutas();
@@ -106,10 +129,12 @@ export class PreguntadosComponent implements OnInit {
   compararRespuesta(nombreComparar:string){
     if(nombreComparar==this.RespuestaVerdadera){
       this.ganaste();
-
+      this.adivinadas++;
     }else{
      this.perdiste();
+     this.perderVidas();
     }
+    this.cantidad--;
     this.cantidadFotos--;
     if(this.cantidadFotos!=0){
       this.generarRespuestasImagen();
@@ -206,15 +231,47 @@ export class PreguntadosComponent implements OnInit {
    }
    return myArray;
  }
+ descontarCorazones(){
+  if(this.corazones===3){
 
+    this.vidas[0]=true;
+    this.vidas[1]=true;
+    this.vidas[2]=true;
+
+  }else {
+    if(this.corazones===2)
+    {
+     this.texto="Genial te felicito terminaste con 2 vidas a que no terminas sin usar ninguna , te reto!!!"
+      this.vidas[0]=false;
+    }else{
+      if(this.corazones===1){
+         this.texto="uuuhh perro ahi nomas eh , pero terminaste con una sola pero genial!! cuanto q no te jugas otra ?"
+        this.vidas[1]=false;
+      }else{
+        this.vidas[2]=false;
+
+      }
+
+    }
+  }
+
+}
+perderVidas(){
+  this.corazones--;
+  this.descontarCorazones();
+  if(this.corazones===0){
+    this.mensajePerdiste();
+
+  }
+}
  ganaste(){
-  this.toastr.success('Adivinaste!!','HARRY DICE :',{positionClass:'toast-top-right',timeOut:500  });
+  this.toastr.success('Adivinaste!!','HARRY DICE :',{positionClass:'toast-top-right',timeOut:1000  });
  }
  perdiste(){
- this.toastr.error('Uhh le erraste y perdiste una vida' ,'HARRI DICE :' ,{positionClass:'toast-top-left',timeOut:500 });
+ this.toastr.error('Uhh le erraste y perdiste una vida' ,'HARRI DICE :' ,{positionClass:'toast-top-left',timeOut:1000 });
  }
- mensajevictoria(){
-   let texto="aca";
+ mensajevictoria(texto:string){
+
    Swal.fire({
      //icon: 'success',
      title: 'Felicidades!!! ganaste!!',
@@ -224,9 +281,20 @@ export class PreguntadosComponent implements OnInit {
      confirmButtonText: 'jugar otra partida?',
      showDenyButton: true,
      denyButtonText: 'volver al menu ?',
+     padding: '3em',
+     background: '#fff url(https://sweetalert2.github.io/images/trees.png)',
+     backdrop: `
+       rgba(0,0,123,0.4)
+       url("https://sweetalert2.github.io/images/nyan-cat.gif")
+       left top
+       no-repeat
+     `
    }).then((result) => {if (result.isConfirmed){
      this.inicialiarJuego();
-   }})
+   }else if(result.isDenied){
+    this.router.navigate(['./home']);
+  }
+  })
  }
  mensajePerdiste(){
    Swal.fire({
@@ -234,14 +302,17 @@ export class PreguntadosComponent implements OnInit {
      title: 'Lo sentimos!!!',
       text: 'Ha perdido esta vez, pero lo hizo excelente',
      imageUrl: ("../../../assets/imagenes/menor-mayor/derrota.gif"),
-     imageHeight: 100,
+     imageHeight: 150,
      imageAlt: 'A tall image',
      confirmButtonText: 'jugar otra partida?',
      showDenyButton: true,
      denyButtonText: 'volver al menu ?',
    }).then((result) => {if (result.isConfirmed){
      this.inicialiarJuego();
-   }})
+   }else if(result.isDenied){
+    this.router.navigate(['./home']);
+  }
+  })
  }
 
   ngOnInit(): void {
