@@ -17,7 +17,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     QuienSoyComponent,
     RegistroComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -36,19 +36,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     FormsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ErrorTailorModule.forRoot({
       errors: {
         useValue: {
           required: 'Campo requerido',
-          minlength: ({ requiredLength, actualLength }) => 
+          minlength: ({ requiredLength, actualLength }) =>
                       `Expect ${requiredLength} but got ${actualLength}`,
           invalidAddress: error => `Address isn't valid`
         }
       }
     })
-  
+
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]

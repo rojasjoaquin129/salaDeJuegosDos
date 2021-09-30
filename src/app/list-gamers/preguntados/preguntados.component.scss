@@ -1,0 +1,115 @@
+.todo {
+  background-image: url("../../../assets/imagenes/fondoHarry.jpg");
+  background-size: cover;
+  height: 800px;
+  position: relative;
+  @media screen and (min-width: 400px) {
+    background-image: url("../../../assets/imagenes/fondoharry2.jpg");
+  }
+}
+
+.imagen {
+  border-radius: 25px;
+  border-color: white;
+  border-style: solid;
+  @media screen and (min-width: 400px) {
+    margin-bottom: 37px;
+  }
+}
+h1 {
+  color: rgb(255, 255, 255);
+  font-size: 21px;
+  @media screen and (min-width: 400px) {
+    font-size: 35px;
+  }
+}
+.section {
+  width: 95%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  justify-content: space-between;
+  @media screen and (min-width: 400px) {
+    width: 58%;
+  }
+}
+.titulodos {
+  background-color: rgb(65, 53, 53);
+  border-radius: 20px;
+  border-color: rgb(255, 255, 255);
+  border-style: solid;
+}
+
+.cont-titulo {
+  width: 95%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  @media screen and (min-width: 400px) {
+    width: 35%;
+    margin-bottom: 75px;
+  }
+}
+.titulo {
+  background-color: rgb(65, 53, 53);
+  border-radius: 20px;
+  width: calc(100% - 0px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: rgb(255, 255, 255);
+  border-style: solid;
+  padding: 2px;
+}
+.contenedor {
+  margin: auto;
+  text-align: center;
+  top: 5%;
+  position: relative;
+  @media screen and (min-width: 400px) {
+    top: 10%;
+  }
+}
+.imagenes {
+  background-color: rgb(37, 106, 195);
+  width: calc((100% - 38px) / 2);
+  flex: none;
+  margin-bottom: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: rgb(255, 255, 255);
+  border-style: solid;
+  border-radius: 14px;
+  cursor: pointer;
+  margin-top: 2px;
+
+  @media screen and (min-width: 400px) {
+    width: calc((100% - 38px) / 4);
+    margin-right: -100px;
+    margin-left: -100px;
+  }
+}
+.nombres {
+  background-color: rgb(37, 106, 195);
+  width: calc((100% - 38px) / 2);
+  flex: none;
+  margin-bottom: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em 0;
+  border-color: black;
+  border-style: solid;
+  border-radius: 14px;
+  cursor: pointer;
+  color: white;
+
+  @media screen and (min-width: 400px) {
+    font-size: 18px;
+  }
+}

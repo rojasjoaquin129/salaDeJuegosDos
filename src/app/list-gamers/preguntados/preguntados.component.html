@@ -1,1 +1,56 @@
-<p>preguntados works!</p>
+<div class="todo">
+  <div class="contenedor" *ngIf="!cambiarJuego">
+    <div class="cont-titulo">
+      <div class="titulo">
+        <h1>Que personaje es el de la foto?</h1>
+      </div>
+    </div>
+
+    <img src="{{imagen}}"  class="imagen" alt="imagen a adivinar">
+
+    <div class="section">
+      <div *ngFor="let nombre of nombres" class="nombres"
+      (click)="compararRespuesta(nombre)">{{nombre}}</div>
+    </div>
+  </div>
+  <div class="contenedor" *ngIf="cambiarJuego && !ActivarHechizo">
+    <div class="cont-titulo">
+      <div class="titulodos">
+        <h1>Quien es : </h1>
+        <h1>{{nombreImagen}}</h1>
+      </div>
+    </div>
+
+    <div class="section">
+      <img *ngFor="let imagen of imagenes "  src="{{imagen}}" class="imagenes"
+      (click)="compararImagen(imagen)">
+    </div>
+  </div>
+  <div class="contenedor" *ngIf="(cambiarJuego && cambiarHechizo )">
+    <div class="cont-titulo">
+    <div class="titulodos">
+      <h1>Adivina que uso tiene el Suiguiente hechizo:</h1>
+      <h1>{{nombreHechizo}}</h1>
+    </div>
+    </div>
+    <div class="section">
+      <div *ngFor="let usos of UsosArray " class="nombres"
+      (click)="compararUso(usos)">{{usos}}</div>
+    </div>
+  </div>
+  <div class="contenedor" *ngIf="(cambiarJuego && !cambiarHechizo && ActivarHechizo)">
+    <div class="cont-titulo">>
+      <div class="titulodos">
+        <h1>Que hechizo tiene el siguente uso:</h1>
+        <h1>{{UsoHecizo}}</h1>
+      </div>
+    </div>
+
+    <div class="section">
+      <div *ngFor="let hechizo of hechizosArray " class="nombres"
+      (click)="compararhechizos(hechizo)">{{hechizo}}</div>
+    </div>
+  </div>
+</div>
+
+
