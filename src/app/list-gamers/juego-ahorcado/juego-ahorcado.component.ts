@@ -16,8 +16,19 @@ export class JuegoAhorcadoComponent  {
   fallas:Array<string>=[];
   numFallas=0;
   title = 'juegoAhorcado';
+  readonly fallasFotos =[
+    "../assets/imagenes/ahorcado/0.jpg" ,
+    "../assets/imagenes/ahorcado/1.jpg",
+    "../assets/imagenes/ahorcado/2.jpg",
+    "../assets/imagenes/ahorcado/3.jpg",
+    "../assets/imagenes/ahorcado/4.jpg",
+    "../assets/imagenes/ahorcado/5.jpg",
+    "../assets/imagenes/ahorcado/6.jpg"
+  ]
+  fotoMostrar:any;
   constructor( private router:Router){
     this.inicializarJuego();
+
   }
   aleatorio(minimo:number,maximo:number){
     return Math.round(Math.random() * (maximo - minimo) + minimo);
@@ -32,6 +43,7 @@ export class JuegoAhorcadoComponent  {
     this.palabraAleatoria=this.PALABRAS[numeroAleatorio];
     this.generalPalabra();
     this.inicializarBotones();
+    this.fotoMostrar=this.fallasFotos[this.numFallas];
   }
 
   inicializarBotones(): void {
@@ -85,6 +97,7 @@ export class JuegoAhorcadoComponent  {
   aumentaFallos(letra:string){
     this.fallas.push(letra);
     this.numFallas++;
+    this.fotoMostrar=this.fallasFotos[this.numFallas];
   }
 
   mensajevictoria(){
