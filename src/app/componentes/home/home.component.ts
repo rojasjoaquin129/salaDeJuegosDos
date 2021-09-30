@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   public user:any;
   public user$:Observable<any>=this.as.auth.user;
   public actionChat:Boolean=false;
+  chat:string="Abrir Chat";
   constructor(private as:AuthService) { }
 
   async ngOnInit() {
@@ -19,10 +20,15 @@ export class HomeComponent implements OnInit {
   }
 
   abrirChat(){
-    if(!this.actionChat)
-    this.actionChat=true;
-    else
-    this.actionChat=false;
+    if(!this.actionChat){
+      this.actionChat=true;
+      this.chat="Cerrar Chat"
+    }
+    else{
+      this.actionChat=false;
+      this.chat="Abrir Chat"
+    }
+
   }
 
 }

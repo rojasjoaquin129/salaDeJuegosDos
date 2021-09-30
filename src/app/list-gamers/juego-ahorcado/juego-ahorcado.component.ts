@@ -108,9 +108,9 @@ export class JuegoAhorcadoComponent  {
       text:'ganaste perro !! con una cantidad de ' +this.numFallas,
       imageUrl: ("../../../assets/imagenes/menor-mayor/victoria.gif"),
       imageHeight: 300,
-      confirmButtonText: 'jugar otra partida?',
+      confirmButtonText: '¿Jugar otra partida? ',
       showDenyButton: true,
-      denyButtonText: 'volver al menu ?',
+      denyButtonText: '¿Volver al menú?',
       padding: '3em',
      background: '#fff url(https://sweetalert2.github.io/images/trees.png)',
      backdrop: `
@@ -136,9 +136,9 @@ export class JuegoAhorcadoComponent  {
       imageUrl: ("../../../assets/imagenes/menor-mayor/derrota.gif"),
       imageHeight: 150,
       imageAlt: 'A tall image',
-      confirmButtonText: 'jugar otra partida?',
+      confirmButtonText: '¿Jugar otra partida? ',
       showDenyButton: true,
-      denyButtonText: 'volver al menu ?',
+      denyButtonText: '¿Volver al menú?',
     }).then((result) => {if (result.isConfirmed){
       this.inicializarJuego();
     }else if(result.isDenied){

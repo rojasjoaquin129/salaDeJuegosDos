@@ -4,10 +4,11 @@
     <div class="col-md-5 p-lg-5 mx-auto my-5">
       <h1 class="display-4 font-weight-normal" style="color:white">JUEGOS</h1>
       <div *ngIf="user$ | async as user; else logeado">
-        <a class="btn btn-outline-success" (click)="abrirChat()">imiciar Chat</a>
+        <a class="btn btn-outline-success" (click)="abrirChat()">{{chat}}</a>
       </div>
      <ng-template #logeado>
-      <p class="lead font-weight-normal"  style="color:white">buenas contamos con unos juegos simples echos con amor y desesperacion , para ver el chat tiene que iniciar sesion  </p>
+      <p class="lead font-weight-normal"  style="color:white">¡Buenas!Contamos con unos juegos simples hechos con amor y desesperación.
+        Para ver el chat, tiene que iniciar sesión  </p>
         <a class="btn btn-outline-warning" routerLink='../login'>iniciar sesion </a>
      </ng-template>
     </div>
@@ -21,14 +22,14 @@
     <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
       <div class="my-3 py-3">
         <h2 class="display-5">Mayor o Menor?</h2>
-        <p class="lead">Adivina la proxima carta.</p>
+        <p class="lead">Adiviná la práxima carta.</p>
       </div>
       <div type="button"  routerLink='/list-gamer/menor-mayor' class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;
       background-image: url(../../../assets/imagenes/mayoromenor.jpg);background-size:cover; background-repeat: no-repeat;"></div>
     </div>
-    <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+    <div class="bg-info mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
       <div class="my-3 p-3">
-        <h2 class="display-5"> EL Ahorcado</h2>
+        <h2 class="display-5"> EL ahorcado</h2>
         <p class="lead">Descubre la palabra que se encuentra escondida.</p>
       </div>
       <div type="button"  routerLink='/list-gamer/ahorcado' class="bg-dark shadow-sm mx-auto"
@@ -38,10 +39,10 @@
   </div>
 
   <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-    <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+    <div class="bg-danger mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
       <div class="my-3 p-3">
         <h2 class="display-5">Puzzle Numerico</h2>
-        <p class="lead">Juego Simple donde tenes que acomodar los numeros </p>
+        <p class="lead">Juego Simple en el que tenés que acomodar los numeros </p>
       </div>
       <div type="button"  routerLink='/list-gamer/puzzle'   class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;
       background-image: url(../../../assets/imagenes/puzzles.jpg);background-size:cover; background-repeat: no-repeat;"></div>
