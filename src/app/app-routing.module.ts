@@ -5,16 +5,19 @@ import { HomeComponent } from './componentes/home/home.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { QuienSoyComponent } from './componentes/quien-soy/quien-soy.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
-
+import { EncuentaComponent } from './componentes/encuenta/encuenta.component';
+import { ResultadosComponent } from './componentes/resultados/resultados.component';
 const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'login',component:LoginComponent},
   {path:'quien-soy',component:QuienSoyComponent},
   {path:'registro',component: RegistroComponent},
   {path:'chat',component:ChatComponent},
+  {path:'encuesta',component:EncuentaComponent},
+  {path:'resultados',component: ResultadosComponent},
   {path:'list-gamer',loadChildren:()=> import('./list-gamers/list-gamers.module').then( m=>m.ListGamersModule)},
   {path:"" ,redirectTo: 'home',pathMatch:'full'},
- 
+
   {path:'**',component: HomeComponent},
 ];
 

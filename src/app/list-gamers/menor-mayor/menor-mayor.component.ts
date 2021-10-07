@@ -2,6 +2,7 @@ import { Component,  } from '@angular/core';
 import Swal from 'sweetalert2';
 import { ToastrService} from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ResultadosService } from 'src/app/services/resultados.service';
 
 @Component({
   selector: 'app-menor-mayor',
@@ -25,7 +26,8 @@ export class MenorMayorComponent  {
   texto='Espectacular Terminaste con las 3 vidas intactas ,sos un crack!';
   adivinadas=0;
   cantidad=10;
-  constructor(private toastr: ToastrService ,private router: Router){
+  constructor(private toastr: ToastrService ,private router: Router,
+    public res:ResultadosService){
     this.inicialiarJuego();
 
   }
@@ -97,6 +99,7 @@ export class MenorMayorComponent  {
     this.corazones--;
     this.descontarCorazones();
     if(this.corazones===0){
+      this.res.agregarResultado('Perdio', 'mayor-menor','0');
       this.mensajePerdiste();
       this.disableBtn=false;
     }
@@ -146,7 +149,9 @@ export class MenorMayorComponent  {
     setTimeout(()=>{this.compararCarta(numeroAnterior,CartaSiguente,flagMayorOMenor)},1500);
     setTimeout(()=>{this.cartaEstaticae()},80000);
     if(this.cantidad===0 && this.corazones!=0){
+      this.res.agregarResultado('Gano', 'mayor-menor',this.corazones.toString());
       this.mensajevictoria(this.texto);
+
     }
    }else{
   this.disableBtn=false;

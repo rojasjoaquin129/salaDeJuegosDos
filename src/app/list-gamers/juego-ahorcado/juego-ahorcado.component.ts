@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ResultadosService } from 'src/app/services/resultados.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-juego-ahorcado',
@@ -26,7 +27,7 @@ export class JuegoAhorcadoComponent  {
     "../assets/imagenes/ahorcado/6.jpg"
   ]
   fotoMostrar:any;
-  constructor( private router:Router){
+  constructor( private router:Router , public res:ResultadosService){
     this.inicializarJuego();
 
   }
@@ -69,6 +70,7 @@ export class JuegoAhorcadoComponent  {
       if(this.numFallas<=5){
         this.aumentaFallos(boton.letra);
       }else{
+        this.res.agregarResultado('Perdio', 'Ahorcado','0');
         this.mensajePerdiste();
         console.log(this.palabraAleatoria);
         this.inicializarJuego();
@@ -76,6 +78,7 @@ export class JuegoAhorcadoComponent  {
     }else{
       boton.estado = "btn btn-success";
       if(this.palabraAdivinada===this.palabraAleatoria){
+        this.res.agregarResultado('Gano', 'Ahorcado',this.numFallas.toString());
        this.mensajevictoria();
       }
     }

@@ -3,6 +3,7 @@ import { ConsumirApiService } from 'src/app/services/consumir-api.service';
 import Swal from 'sweetalert2';
 import { ToastrService} from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ResultadosService } from 'src/app/services/resultados.service';
 
 @Component({
   selector: 'app-preguntados',
@@ -37,7 +38,8 @@ export class PreguntadosComponent implements OnInit {
   cantidad=20;
   adivinadas=0;
   texto='Espectacular Terminaste con las 3 vidas intactas ,sos un crack!';
-  constructor(private service : ConsumirApiService ,private toastr: ToastrService ,private router:Router) {
+  constructor(private service : ConsumirApiService ,private toastr: ToastrService
+    ,private router:Router,public res:ResultadosService) {
     this.service.obtenerpersonaje().subscribe((personaje:any)=>{
       this.personajes=personaje;
      this.generarRespuestasImagen();
@@ -99,6 +101,7 @@ export class PreguntadosComponent implements OnInit {
         this.generarUsosPreguntas();
       }else
       if(this.cantidad===0){
+        this.res.agregarResultado('Gano', 'Preguntados',this.corazones.toString());
         this.mensajevictoria(this.texto)
         this.reset();
       }
@@ -260,6 +263,7 @@ perderVidas(){
   this.corazones--;
   this.descontarCorazones();
   if(this.corazones===0){
+    this.res.agregarResultado('Perdio', 'Preguntados','0');
     this.mensajePerdiste();
 
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ResultadosService } from 'src/app/services/resultados.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-puzzle-numerico',
@@ -12,7 +13,7 @@ export class PuzzleNumericoComponent implements OnInit {
    numerosGenerados:any
   pocicionDelHueco=0;
   movimientos=0;
-  constructor(private router:Router) {
+  constructor(private router:Router ,public res: ResultadosService) {
   this.inicializarjuego();
   }
 
@@ -121,6 +122,7 @@ export class PuzzleNumericoComponent implements OnInit {
     this.movimientos++;
     }
     if(this.verificarTabla()){
+      this.res.agregarResultado('Gano', 'Preguntados','mov('+this.movimientos+')');
       this.mensajevictoria('ganaste movimientos realizados '+this.movimientos);
     }
 

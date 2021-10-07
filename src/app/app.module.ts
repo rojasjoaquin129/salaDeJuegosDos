@@ -18,6 +18,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { EncuentaComponent } from './componentes/encuenta/encuenta.component';
+import { ResultadosComponent } from './componentes/resultados/resultados.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     QuienSoyComponent,
     RegistroComponent,
+    EncuentaComponent,
+    ResultadosComponent,
 
   ],
   imports: [
