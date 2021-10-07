@@ -29,8 +29,8 @@ export class EncuentaComponent implements OnInit {
     this.formulario = this.frB.group( {
       'nombre': ['', [Validators.required]],
       'apellido': ['', Validators.required],
-      'edad': ['', [Validators.required, Validators.min(18), Validators.max(110)]],
-      'telefono': ['', [Validators.required]],
+      'edad': ['', [Validators.required, Validators.min(18), Validators.max(99)]],
+      'telefono': ['', [Validators.required,  Validators.pattern("^[0-9]*$"), Validators.maxLength(10) ]],
       'juego': ['', [Validators.required]],
       'puntuacion': ['', [Validators.required]],
       'opinion': ['', [Validators.required]],

@@ -122,7 +122,7 @@ export class PuzzleNumericoComponent implements OnInit {
     this.movimientos++;
     }
     if(this.verificarTabla()){
-      this.res.agregarResultado('Gano', 'Preguntados','mov('+this.movimientos+')');
+      this.res.agregarResultado('Gano', 'Puzzle numerico','mov('+this.movimientos+')');
       this.mensajevictoria('ganaste movimientos realizados '+this.movimientos);
     }
 
